@@ -25,9 +25,6 @@ class Okx:
         unified_symbol = order_info.unified_symbol
         market = self.client.market(unified_symbol)
 
-        if order_info.amount is not None:
-            order_info.amount = float(self.client.amount_to_precision(order_info.unified_symbol, order_info.amount))
-
         is_contract = market.get("contract")
         if is_contract:
             order_info.is_contract = True
@@ -37,6 +34,17 @@ class Okx:
             self.client.options["defaultType"] = "swap"
         else:
             self.client.options["defaultType"] = "spot"
+
+    def get_amount_precision(self, symbol):
+        market = self.client.market(symbol)
+        precision = market.get("precision")
+        if precision is not None and isinstance(precision, dict) and "amount" in precision:
+            return precision.get("amount")
+
+    def get_contract_size(self, symbol):
+        market = self.client.market(symbol)
+        debug(market)
+        return market.get("contractSize")
 
     def parse_symbol(self, base: str, quote: str):
         if self.order_info.is_futures:
@@ -267,7 +275,11 @@ class Okx:
         close_amount = self.get_amount(order_info)
 
         if self.position_mode == "one-way":
-            params = {"reduceOnly": True}
+            if self.order_info.margin_mode is None or self.order_info.margin_mode == "isolated":
+                params = {"reduceOnly": True, "tdMode": "isolated"}
+            elif self.order_info.margin_mode == "cross":
+                params = {"reduceOnly": True, "tdMode": "cross"}
+
         elif self.position_mode == "hedge":
             if order_info.is_futures and order_info.side == "buy":
                 if order_info.is_entry:
