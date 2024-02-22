@@ -27,7 +27,7 @@ import os
 import sys
 from devtools import debug
 
-VERSION = "23.09.10"
+VERSION = "24.02.22"
 app = FastAPI(default_response_class=ORJSONResponse)
 
 
@@ -48,7 +48,7 @@ def get_error(e):
 
 @app.on_event("startup")
 async def startup():
-    log_message(f"SINSADONG 실행 완료! - 버전:{VERSION}")
+    log_message(f"JIN GU 실행 완료! - 버전:{VERSION}")
 
 
 @app.on_event("shutdown")
