@@ -164,7 +164,7 @@ def log_order_message(exchange_name, order_result: dict, order_info: MarketOrder
         embed = Embed(
             title=order_info.order_name,
             description=f"체결: {exchange_name} {symbol} {side} {amount}",
-            color=0xFFFF00,
+            color=0xFFC0CB,
         )
         embed.add_field(name="일시", value=str(date), inline=False)
         embed.add_field(name="거래소", value=exchange_name, inline=False)
