@@ -197,7 +197,7 @@ def log_hedge_message(exchange, base, quote, exchange_amount, upbit_amount, hedg
 
 
 def log_error_message(error, name):
-    embed = Embed(title=f"{name} 에러", description=f"[{name} 에러가 발생했습니다]\n{error}", color=0xFF0000)
+    embed = Embed(title=f"{name} 에러", description=f"[{name} 에러가 발생했습니다]\n{error}", color=0xFFC0CB)
     logger.error(f"{name} [에러가 발생했습니다]\n{error}")
     log_message(embed=embed)
 
@@ -211,7 +211,7 @@ def log_order_error_message(error: str | Exception, order_info: MarketOrder):
         embed = Embed(
             title=order_info.order_name,
             description=f"[주문 오류가 발생했습니다]\n{error}",
-            color=0xFF0000,
+            color=0xFFC0CB,
         )
         log_message(embed=embed)
 
@@ -222,7 +222,7 @@ def log_order_error_message(error: str | Exception, order_info: MarketOrder):
         embed = Embed(
             title="오류",
             description=f"[오류가 발생했습니다]\n{error}",
-            color=0xFF0000,
+            color=0xFFC0CB,
         )
         log_message(embed=embed)
 
@@ -249,7 +249,7 @@ def log_alert_message(order_info: MarketOrder, result="성공"):
     embed = Embed(
         title=order_info.order_name,
         description="[웹훅 alert_message]",
-        color=0xFF0000,
+        color=0xFFC0CB,
     )
     order_info_dict = order_info.dict(exclude_none=True)
     for key, value in order_info_dict.items():
