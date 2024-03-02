@@ -48,7 +48,7 @@ def get_error(e):
 
 @app.on_event("startup")
 async def startup():
-    log_message(f"JIN GU BOT 실행 완료! - 버전 : {VERSION}")
+    log_message(f"```ansi\nJIN GU BOT 실행 완료!\n- 버전 :[2;45m {VERSION} [0m\n```")
 
 
 @app.on_event("shutdown")
