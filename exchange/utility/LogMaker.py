@@ -164,7 +164,7 @@ def log_order_message(exchange_name, order_result: dict, order_info: MarketOrder
         embed = Embed(
             title=order_info.order_name,
             description=f"체결: {exchange_name} {symbol} {side} {amount}",
-            color=0xFFC0CB,
+            color=0xFFFF00,
         )
         embed.add_field(name="일시", value=str(date), inline=False)
         embed.add_field(name="거래소", value=exchange_name, inline=False)
@@ -211,7 +211,7 @@ def log_order_error_message(error: str | Exception, order_info: MarketOrder):
         embed = Embed(
             title=order_info.order_name,
             description=f"[주문 오류가 발생했습니다]\n{error}",
-            color=0xFFC0CB,
+            color=0xFF0000,
         )
         log_message(embed=embed)
 
@@ -222,7 +222,7 @@ def log_order_error_message(error: str | Exception, order_info: MarketOrder):
         embed = Embed(
             title="오류",
             description=f"[오류가 발생했습니다]\n{error}",
-            color=0xFFC0CB,
+            color=0xFF0000,
         )
         log_message(embed=embed)
 
