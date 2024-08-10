@@ -27,7 +27,7 @@ import os
 import sys
 from devtools import debug
 
-VERSION = "24.07.25"
+VERSION = "24.08.10"
 app = FastAPI(default_response_class=ORJSONResponse)
 
 
